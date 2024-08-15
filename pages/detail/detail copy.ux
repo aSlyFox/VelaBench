@@ -1,0 +1,110 @@
+<template>
+  <div class="demo-page">
+    <text class="title">您的设备性能得分是：</text>
+    <text style="font-size:80px;color:red">{{benchres}}</text>
+    <div class="btn" onClick="goback"><text style="font-size:45px">Back</text></div>
+    <!-- <div class="back_bottom" @click="goback"><text style="font-size:40px">Nav_Back</text></class></div>
+  <div class="home_bottom" @click="goback"><text style="font-size:40px">Nav_Home</text></div>
+  <div class="menu_bottom" @click=""><text style="font-size:40px">Nav_Menu</text></div> -->
+
+  </div>
+</template>
+
+<script>
+import router from "@system.router"
+function additionOperation() {
+      let a = 0;
+      let b = 1;
+      return a + b;
+    }
+    
+    function testAdditionOperationsPerSecond(operation, duration) {
+      const startTime = Date.now();
+      let count = 0;
+    
+      while (Date.now() - startTime< duration) {
+        operation();
+        count++;
+      }
+    
+      return count;
+    }
+
+const duration = 1000; // 1000毫秒等于1秒
+const numberOfOperations = testAdditionOperationsPerSecond(additionOperation, duration);
+export default {
+  private: {
+    text: "运行中",
+    benchres: String(numberOfOperations)
+  },
+  openweb(){
+    router.push({uri:"https://www.baidu.com/"})
+  },
+  goback(){
+  router.back({uri:"/pages/index"})
+  }
+}
+
+    
+
+    console.log(numberOfOperations);
+    
+    
+</script>
+
+<style>
+/* .back_bottom{
+  display: inline;
+  border-radius: 18px;
+  width: 105px;
+  height: 60px;
+  background-color:red;
+  color:black;
+  position:fixed;
+  top:140px;
+  right:160px;
+}
+.home_bottom{
+  display: inline;
+  border-radius: 18px;
+  width: 105px;
+  height: 60px;
+  background-color:red;
+  color:black;
+  position:fixed;
+  top:80px;
+  right:0px;
+}
+.menu_bottom{
+  display: inline;
+  border-radius: 18px;
+  width: 105px;
+  height: 60px;
+  background-color:red;
+  color:black;
+  position:fixed;
+  top:20px;
+  left:160px; */
+.btn {
+  width: 180px;
+  height: 80px;
+  margin-top: 20px;
+  border-radius: 15px;
+  background-color: #225beb;
+  font-size: 5px;
+  color: #ffffff;
+  justify-content: center;
+  align-content: center;
+  margin: 20px;
+}
+.demo-page {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-size: 30px;
+  text-align: center;
+}
+</style>

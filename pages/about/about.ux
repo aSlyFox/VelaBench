@@ -1,0 +1,45 @@
+<template>
+  <div class="demo-page">
+      <text style="font-size:50px">关于VelaBench</text>
+      <text style="font-size:50px"> </text>
+      <text style="font-size:25px;text-align: center">VelaBench是一款适用于Xiaomi VelaOS设备的性能基准测试软件</text>
+      <text style="font-size:25px;text-align: center">由狐狐子制作，QQ:1019116346</text>
+     <div class="btn" @click="routeHome"><text style="font-size:40px">返回</text></class></div>
+    <!-- <div class="home_bottom" @click="goback"><text style="font-size:40px">Nav_Home</text></div> -->
+    <!-- <div class="menu_bottom" @click=""><text style="font-size:40px">Nav_Menu</text></div> --> -->
+  </div>
+
+  </template>
+  <script>
+  import router from "@system.router"
+  export default{  
+    routeHome(){
+    router.back({uri:"/pages/index"})
+  }
+  }
+
+ </script>
+  <style>
+.title {
+  font-size: 30px;
+  text-align: center;
+}
+.demo-page {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.btn {
+  width: 180px;
+  height: 80px;
+  margin-top: 20px;
+  border-radius: 15px;
+  background-color: #225beb;
+  font-size: 5px;
+  color: #ffffff;
+  justify-content: center;
+  align-content: center;
+  margin: 20px;
+}
+
+</style>

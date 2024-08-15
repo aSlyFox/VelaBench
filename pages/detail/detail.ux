@@ -1,0 +1,115 @@
+<template>
+  <div class="demo-page">
+    <text class="title">您的设备性能得分是：</text>
+    <text style="font-size:80px;color:red">{{benchres}}</text>
+    <div class="btn" onClick="goback"><text style="font-size:45px">Back</text></div>
+    <!-- <div class="back_bottom" @click="goback"><text style="font-size:40px">Nav_Back</text></class></div>
+  <div class="home_bottom" @click="goback"><text style="font-size:40px">Nav_Home</text></div>
+  <div class="menu_bottom" @click=""><text style="font-size:40px">Nav_Menu</text></div> -->
+
+  </div>
+</template>
+
+<script>
+import router from "@system.router"
+function getOperationsPerSecond() {
+      const operations = {
+        add: 0,
+        subtract: 0,
+        multiply: 0,
+        divide: 0
+      };
+    
+      const start = new Date().getTime();
+    
+      while (new Date().getTime() - start < 1000) {
+        operations.add++;
+        operations.subtract++;
+        operations.multiply++;
+        operations.divide++;
+      }
+    
+      return operations;
+    }
+    
+    function calculateAverage(operations) {
+      const totalOperations = Object.values(operations).reduce((sum, count) => sum + count, 0);
+      return totalOperations / Object.keys(operations).length;
+    }
+    
+    const operationsPerSecond = getOperationsPerSecond();
+    const averageOperationsPerSecond = calculateAverage(operationsPerSecond);
+    
+
+
+
+export default {
+  private: {
+    text: "运行中",
+    benchres: String(averageOperationsPerSecond)
+  },
+
+  goback(){
+  router.back({uri:"/pages/index"})
+  }
+}
+    
+    
+</script>
+
+<style>
+/* .back_bottom{
+  display: inline;
+  border-radius: 18px;
+  width: 105px;
+  height: 60px;
+  background-color:red;
+  color:black;
+  position:fixed;
+  top:140px;
+  right:160px;
+}
+.home_bottom{
+  display: inline;
+  border-radius: 18px;
+  width: 105px;
+  height: 60px;
+  background-color:red;
+  color:black;
+  position:fixed;
+  top:80px;
+  right:0px;
+}
+.menu_bottom{
+  display: inline;
+  border-radius: 18px;
+  width: 105px;
+  height: 60px;
+  background-color:red;
+  color:black;
+  position:fixed;
+  top:20px;
+  left:160px; */
+.btn {
+  width: 180px;
+  height: 80px;
+  margin-top: 20px;
+  border-radius: 15px;
+  background-color: #225beb;
+  font-size: 5px;
+  color: #ffffff;
+  justify-content: center;
+  align-content: center;
+  margin: 20px;
+}
+.demo-page {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-size: 30px;
+  text-align: center;
+}
+</style>

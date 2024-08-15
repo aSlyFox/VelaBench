@@ -1,0 +1,107 @@
+<template>
+  <div class="demo-page">
+    <text class="title">欢迎使用VelaBench</text>
+    <text class="text">Benchmark For Wear&IoT</text>
+    <!-- <text class="text" style="color:yellow">NavBar Test</text> -->
+    <!-- 点击跳转详情页 -->
+  <!-- <div class="BtnBlock"> -->
+    <div class="btn" @click="routeAbout"><text style="font-size:30px;text-align: center">关于VelaBench</text></div>
+    <div class="btn" @click="routeDetail"><text style="font-size:30px;text-align: center">运行性能测试</text></div>
+  <!-- </div> --></div>
+
+  <!-- </div>
+  <div class="back_bottom" @click="quitapp"><text style="font-size:20px">Nav_Back</text></class></div>
+  <div class="home_bottom" @click=""><text style="font-size:20px">Nav_Home</text></div>
+  <div class="menu_bottom" @click=""><text style="font-size:20px">Nav_Menu</text></div>
+  </div> -->
+
+</template>
+
+<script>
+import router from "@system.router"
+import configuration from "@system.configuration"
+import { applyOperations } from "@system.image"
+import { showToast } from "@system.prompt"
+import app from '@system.app' 
+showToast("hello");
+
+export default {
+  // 页面级组件的数据模型，影响传入数据的覆盖机制：private内定义的属性不允许被覆盖
+  private: {
+    title: "示例页面"
+  },
+  quitapp(){
+    app.terminate()
+
+  },
+  routeDetail() {
+    router.push({uri: "/pages/detail"})
+  },
+  routeAbout(){
+    router.push({uri: "/pages/about"})
+  }
+}
+</script>
+
+<style>
+.demo-page {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-size: 50px;
+  text-align: center;
+}
+.text{
+  font-size: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+  color:yellow
+}
+.btn {
+  width: 180px;
+  height: 80px;
+  margin-top: 40px;
+  border-radius: 15px;
+  background-color: #225beb;
+  font-size: 5px;
+  color: #ffffff;
+  justify-content: center;
+  align-content: center;
+  margin: 20px;
+}
+.back_bottom{
+  display: inline;
+  border-radius: 18px;
+  width: 105px;
+  height: 60px;
+  background-color:red;
+  color:black;
+  position:fixed;
+  top:140px;
+  right:160px;
+}
+.home_bottom{
+  display: inline;
+  border-radius: 18px;
+  width: 105px;
+  height: 60px;
+  background-color:red;
+  color:black;
+  position:fixed;
+  top:80px;
+  right:0px;
+}
+.menu_bottom{
+  display: inline;
+  border-radius: 18px;
+  width: 105px;
+  height: 60px;
+  background-color:red;
+  color:black;
+  position:fixed;
+  top:20px;
+  left:160px;
+}
+</style>
