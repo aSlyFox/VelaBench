@@ -10,7 +10,7 @@
         >
           <text class="btn-text">{{ isProcessing ? "你先别急" : "运行性能测试" }}</text>
         </div>
-        <text>\n</text>
+        <text></text>
         <div class="main-btn" style="background-color: #225beb" @click="routeGPU">
           <text class="btn-text" style="font-size: 28px">图形性能测试(预览版)</text>
         </div>
@@ -68,11 +68,19 @@ export default {
   private: {
     title: "VelaBench",
     isProcessing: false,
-    ver: currentVersion
+    ver: currentVersion,
+    timer:null
   },
   onInit() {
     global.runGC()
     console.log("Index Page Init")
+  },
+  onDestroy(){
+    if (this.timer) {
+      clearTimeout(this.timer);
+      this.timer = null;
+    }
+    global.runGC(); 
   },
   onShow() {
     this.isProcessing = false
@@ -89,8 +97,9 @@ export default {
         this.isProcessing = false
       }
     })
-    setTimeout(() => {
-      this.isProcessing = false
+    this.timer=setTimeout(() => {
+      this.isProcessing = false;
+      this.timer=null;
     }, 2000)
   },
   routeGPU() {

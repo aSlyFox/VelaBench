@@ -6,14 +6,13 @@
     <text style="font-size: 80px; color: red">{{ benchres }}</text>
     <text class="title" style="color: yellow">不同版本测试得分结果不可直接对比</text>
     <div class="btn" onClick="goback"><text style="font-size: 35px">Back</text></div>
-    <div class="btn" onClick="uploadScore"><text style="font-size: 35px">存储成绩</text></div>
     <div class="bottom-hint">
     <text class="hint-text">测试软件版本 ↑</text>
     </div>
   </div>
   <div class="pages">
     <text class="btn-text" style="color:white">CPU测试软件版本</text>
-    <text class="btn-text" style="color:yellow;font-size:30px">20260119</text>
+    <text class="btn-text" style="color:yellow;font-size:30px">202602110</text>
   </div>
 </swiper>
 </template>
@@ -64,32 +63,15 @@ function getWatchScore() {
 
 var score = getWatchScore()
 
-function uploadScore() {
-  file.writeText({
-    uri: "internal://velabench/score.json",
-    text:
-      '{"type":"' +
-      device.getInfo(model) +
-      '","version":' +
-      app.getInfo(versionCode) +
-      '","score":' +
-      toString(averageOperationsPerSecond) +
-      '"}',
-    success: function () {
-      console.log("Score saved")
-    },
-    fail: function (data, code) {
-      console.log(`Save failed, code = ${code}`)
-    }
-  })
-}
 
 export default {
   private: {
     text: "运行中",
     benchres: String(score)
   },
-
+  onDestroy(){
+    global.runGC()
+  },
   goback() {
     router.back({uri: "pages/index"})
   },

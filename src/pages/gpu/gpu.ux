@@ -32,7 +32,7 @@
 </div>
 <div class="ver">
   <text class="btn-text" style="color:white">图形测试软件版本</text>
-  <text class="btn-text" style="color:yellow;font-size:30px">20260128</text>
+  <text class="btn-text" style="color:yellow;font-size:30px">20260210</text>
 </div>
 </swiper>
 </template>
@@ -156,7 +156,14 @@ export default {
     particles: [],
     totalFPS: 0
   },
-
+  onDestroy(){
+    this.active = false;
+    if (this.renderTimer) {
+      clearTimeout(this.renderTimer);
+      }
+    global.runGC()
+  },
+  
   startStressTest() {
     console.info("[VelaBench] 检测到点击，进入 startStressTest")
 
@@ -231,8 +238,8 @@ export default {
         })
       }
 
-      setTimeout(() => {
-        this.runLoop()
+      this.renderTimer=setTimeout(() => {
+          this.runLoop()
       }, 40)
     } catch (e) {
       console.error("[VelaBench] runLoop 崩溃: " + e.message)
